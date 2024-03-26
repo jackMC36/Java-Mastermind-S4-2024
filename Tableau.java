@@ -9,6 +9,7 @@ public class Tableau{
 
     public Tableau(ArrayList<Pion> ligne, int T, int P) {
         this.ligneDeviner = ligne;
+        this.tableauTentative = new ArrayList<ArrayList<Pion>>();
         this.nombreTentative = T;
         this.nombrePion = P;
     }
@@ -57,9 +58,9 @@ public class Tableau{
         }
 
         for(int i=0;i<nombreTentative-tentativeActuelle;i++){
-            ligne = "[";
+            String ligne = "[";
             for(int j=0;j<nombrePion;j++){
-                ligne += "*";
+                ligne += " * ";
                 if(j!=nombrePion-1){
                     ligne+= " ; ";
                 }                
