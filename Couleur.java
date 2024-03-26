@@ -1,3 +1,3 @@
-public enum Couleur {
-    ROUGE, ORANGE, JAUNE, VERT, BLEU, VIOLET, NOIR, BLANC
+public enum Couleur{
+    ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC
 }
