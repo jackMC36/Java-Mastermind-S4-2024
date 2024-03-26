@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+
 public class Tableau{
-    ArrayList<Pion> ligneDeviner;
-    ArrayList<ArrayList<Pion>> tableauTentative;
-    int nombreTentative;
-    int nombrePion;
-    int tentativeActuelle = 0;
+    private ArrayList<Pion> ligneDeviner; //tableau stockant la ligne de pion à deviner
+    private ArrayList<ArrayList<Pion>> tableauTentative; //tableau stockant les tentatives
+    private int nombreTentative;
+    private int nombrePion;
+    private int tentativeActuelle = 0;
 
     public Tableau(ArrayList<Pion> ligne, int T, int P) {
         this.ligneDeviner = ligne;
@@ -11,12 +13,12 @@ public class Tableau{
         this.nombrePion = P;
     }
 
-    #ajouterTentative, methode qui ajoute une tentative au tableau de tentative
+    //ajouterTentative, methode qui ajoute une tentative au tableau de tentative
     public void ajouterTentative(ArrayList<Pion> tentative){
         tableauTentative.add(tentative);
         tentativeActuelle++;
     }
-    #verifierTentative, methode qui verifie si la tentative correspond au resultat attendu
+    //verifierTentative, methode qui verifie si la tentative correspond au resultat attendu
     public boolean verifierTentative(ArrayList<Pion> tentative){
         int bienPlace = 0;
         int malPlace = 0;
@@ -40,7 +42,7 @@ public class Tableau{
         }
     }
 
-    #affichage, methode qui affiche le tableau de tentative
+    //affichage, methode qui affiche le tableau de tentative
     public void affichage(){
         for(int i=0;i<tentativeActuelle;i++){
             String ligne = "[";
