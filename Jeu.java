@@ -30,7 +30,7 @@ public class Jeu {
         System.out.println(pion1.equals(pion1b));
         System.out.println(pion1.equals(pion2)); */
 
-        Tableau T2 = new Tableau(false);
+        Tableau T2 = new Tableau(true);
         T2.debutPartie();
     }
 }
