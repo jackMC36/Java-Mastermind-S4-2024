@@ -11,7 +11,8 @@ public class Tableau{
     private int tentativeActuelle = 0;
     private int nombreCouleur;
 
-    public static void clearScreen() {  
+    /* méthode permettant de faire un 'clear' du terminal */
+    public static void clearScreen(){  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
@@ -134,7 +135,7 @@ public class Tableau{
         Tableau.clearScreen();
     }
 
-    /*ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
+    /* ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
     public void ajouterTentative(ArrayList<Pion> tentative){
         tableauTentative.add(tentative);
         tentativeActuelle++;
@@ -165,7 +166,7 @@ public class Tableau{
     }
 
 
-    //affichage, methode qui affiche le tableau de tentative
+    /* affichage, methode qui affiche le tableau de tentative */
     public void affichage(){
         System.out.print("\n   +");
         for(int e = 0 ; e < nombrePion ; e++){
@@ -190,27 +191,27 @@ public class Tableau{
             System.out.println();
         }
 
-        for(int i = 0 ; i < tentativeActuelle ; i++){
+        for(int i = tentativeActuelle ; i > 0 ; i--){
             String ligne = "| ";
             for(int j=0;j<nombrePion;j++){
-                ligne += tableauTentative.get(i).get(j).toString();
+                ligne += tableauTentative.get(i-1).get(j).toString();
                 if(j!=nombrePion-1){
                     ligne+= " | ";
                 }                
             }
             ligne+=" |";
-            System.out.print(String.format("%2d ", (tentativeActuelle - i)));
-            ligne+=" Bien placé : " + getNombreCorrect(tableauTentative.get(i));
+            System.out.print(String.format("%2d ", (i)));
+            ligne+=" Bien placé : " + getNombreCorrect(tableauTentative.get(i-1));
             System.out.println(ligne);
             System.out.print("   +");
             for(int e = 0 ; e < nombrePion ; e++){
                 System.out.print("-----+");
             }
-            System.out.println();
+            System.out.println("\n");
         }
     }
 
-    //debutPartie, methode qui lance une partie
+    /* debutPartie, methode qui lance une partie */
     public void debutPartie(){
         boolean fin = false;
         System.out.println("Début de la partie !");
