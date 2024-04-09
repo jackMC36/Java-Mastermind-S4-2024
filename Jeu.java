@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Jeu {
     public static void main(String[] args){
-        ArrayList<Pion> ligne = new ArrayList<Pion>();
+        /* ArrayList<Pion> ligne = new ArrayList<Pion>();
         Pion pion1 = new Pion(Couleur.ROUGE);
         Pion pion1b = new Pion(Couleur.ROUGE);
         Pion pion2 = new Pion(Couleur.JAUNE);
@@ -13,7 +13,7 @@ public class Jeu {
         ligne.add(pion3);
         ligne.add(pion4);
 
-        /* ArrayList<Pion> add = new ArrayList<Pion>();
+        ArrayList<Pion> add = new ArrayList<Pion>();
         Pion pion5 = new Pion(Couleur.CYAN);
         Pion pion6 = new Pion(Couleur.ROSE);
         Pion pion7 = new Pion(Couleur.VIOLET);
@@ -30,7 +30,7 @@ public class Jeu {
         System.out.println(pion1.equals(pion1b));
         System.out.println(pion1.equals(pion2)); */
 
-        Tableau T2 = new Tableau(true);
+        Tableau T2 = new Tableau(false);
         T2.debutPartie();
     }
 }

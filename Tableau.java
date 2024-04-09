@@ -11,9 +11,16 @@ public class Tableau{
     private int tentativeActuelle = 0;
     private int nombreCouleur;
 
+    public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }
+
     public Tableau(boolean machine) {
 
         this.tableauTentative = new ArrayList<ArrayList<Pion>>();
+
+        Tableau.clearScreen();
 
         System.out.println("Bienvenue dans le jeu Mastermind !");
 
@@ -70,9 +77,10 @@ public class Tableau{
                     System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC");
                 }
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
-                this.ligneDeviner.add(new Pion(Couleur.valueOf(input.nextLine())));
+                this.ligneDeviner.add(new Pion(Couleur.valueOf(input.next())));
             }
         }
+        Tableau.clearScreen();
     }
 
     /*ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
@@ -139,13 +147,9 @@ public class Tableau{
                     ligne+= " | ";
                 }                
             }
-
             ligne+=" |";
             System.out.print(String.format("%2d ", (tentativeActuelle - i)));
-
-            ligne+="] ";
-            ligne+="Bien placé : " + getNombreCorrect(tableauTentative.get(i));
-
+            ligne+=" Bien placé : " + getNombreCorrect(tableauTentative.get(i));
             System.out.println(ligne);
             System.out.print("   +");
             for(int e = 0 ; e < nombrePion ; e++){
