@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Jeu {
     public static void main(String[] args){
         ArrayList<Pion> ligne = new ArrayList<Pion>();
