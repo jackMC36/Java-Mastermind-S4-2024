@@ -75,12 +75,20 @@ public class Tableau{
         }
     }
 
+<<<<<<< HEAD
+    /*ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
+=======
     //ajouterTentative, methode qui ajoute une tentative au tableau de tentative
+>>>>>>> refs/remotes/origin/main
     public void ajouterTentative(ArrayList<Pion> tentative){
         tableauTentative.add(tentative);
         tentativeActuelle++;
     }
+<<<<<<< HEAD
+    /* verifierTentative, methode qui verifie si la tentative correspond au resultat attendu */
+=======
     //verifierTentative, methode qui verifie si la tentative correspond au resultat attendu
+>>>>>>> refs/remotes/origin/main
     public boolean verifierTentative(ArrayList<Pion> tentative){
         int bienPlace = this.getNombreCorrect(tentative);
         if(bienPlace == nombrePion){
@@ -91,6 +99,7 @@ public class Tableau{
         }
     }
 
+<<<<<<< HEAD
     public int getNombreCorrect(ArrayList<Pion> tentative){
         int bienPlace = 0;
         for(int i=0;i<nombrePion;i++){
@@ -101,9 +110,27 @@ public class Tableau{
         return bienPlace;
     }
 
+=======
+<<<<<<< HEAD
+    /* affichage, methode qui affiche le tableau de tentative */
+=======
+>>>>>>> 3899f6560299f6d6bbd26518a6369a730ac1d9ab
     //affichage, methode qui affiche le tableau de tentative
+>>>>>>> refs/remotes/origin/main
     public void affichage(){
-        for(int i=0;i<tentativeActuelle;i++){
+        for(int i = 0 ; i < (nombreTentative - tentativeActuelle) ; i++){
+                    String ligne = "[";
+                    for(int j=0;j<nombrePion;j++){
+                        ligne += " * ";
+                        if(j!=nombrePion-1){
+                            ligne+= " ; ";
+                        }                
+                    }
+                    ligne+="]";
+                    System.out.println(ligne);
+        }
+
+        for(int i = 0 ; i < tentativeActuelle ; i++){
             String ligne = "[";
             for(int j=0;j<nombrePion;j++){
                 ligne += tableauTentative.get(i).get(j).toString();
@@ -113,18 +140,6 @@ public class Tableau{
             }
             ligne+="] ";
             ligne+="Bien placé : " + getNombreCorrect(tableauTentative.get(i));
-            System.out.println(ligne);
-        }
-
-        for(int i=0;i<nombreTentative-tentativeActuelle;i++){
-            String ligne = "[";
-            for(int j=0;j<nombrePion;j++){
-                ligne += " * ";
-                if(j!=nombrePion-1){
-                    ligne+= " ; ";
-                }                
-            }
-            ligne+="]";
             System.out.println(ligne);
         }
     }
