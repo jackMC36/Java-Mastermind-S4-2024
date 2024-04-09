@@ -75,23 +75,14 @@ public class Tableau{
         }
     }
 
-<<<<<<< HEAD
     /*ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
-=======
-    /* ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
->>>>>>> 27f833984238ebe8f5799a7d6621480adf8a5a1f
     public void ajouterTentative(ArrayList<Pion> tentative){
         tableauTentative.add(tentative);
         tentativeActuelle++;
     }
-<<<<<<< HEAD
 
     /* verifierTentative, methode qui verifie si la tentative correspond au resultat attendu */
 
-=======
-    
-    /* verifierTentative, methode qui verifie si la tentative correspond au resultat attendu */
->>>>>>> 27f833984238ebe8f5799a7d6621480adf8a5a1f
     public boolean verifierTentative(ArrayList<Pion> tentative){
         int bienPlace = this.getNombreCorrect(tentative);
         if(bienPlace == nombrePion){
@@ -102,13 +93,8 @@ public class Tableau{
         }
     }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     /* affichage, methode qui affiche le tableau de tentative */
-=======
-<<<<<<< HEAD
->>>>>>> 27f833984238ebe8f5799a7d6621480adf8a5a1f
+
     public int getNombreCorrect(ArrayList<Pion> tentative){
         int bienPlace = 0;
         for(int i=0;i<nombrePion;i++){
@@ -121,11 +107,6 @@ public class Tableau{
 
 
     //affichage, methode qui affiche le tableau de tentative
-<<<<<<< HEAD
-=======
->>>>>>> refs/remotes/origin/main
->>>>>>> b8f04b71ad96007d9114a61cb26c9b29d5da7db6
->>>>>>> 27f833984238ebe8f5799a7d6621480adf8a5a1f
     public void affichage(){
         System.out.print("\n   +");
         for(int e = 0 ; e < nombrePion ; e++){
@@ -158,13 +139,13 @@ public class Tableau{
                     ligne+= " | ";
                 }                
             }
-<<<<<<< HEAD
+
             ligne+=" |";
             System.out.print(String.format("%2d ", (tentativeActuelle - i)));
-=======
+
             ligne+="] ";
             ligne+="Bien placé : " + getNombreCorrect(tableauTentative.get(i));
->>>>>>> b8f04b71ad96007d9114a61cb26c9b29d5da7db6
+
             System.out.println(ligne);
             System.out.print("   +");
             for(int e = 0 ; e < nombrePion ; e++){
