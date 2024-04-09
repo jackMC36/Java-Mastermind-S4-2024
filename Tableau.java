@@ -39,13 +39,13 @@ public class Tableau{
 
         System.out.println("Bienvenue dans le jeu Mastermind !");
 
-        System.out.println("Combien de tentatives voulez-vous ?(10 ou 12)");
+        System.out.println("Combien de tentatives voulez-vous ? (10 ou 12)");
         this.nombreTentative = input.nextInt();
            
-        System.out.println("Combien de pions voulez-vous ?(4 ou 5)");
+        System.out.println("Combien de pions voulez-vous ? (4 ou 5)");
         this.nombrePion = input.nextInt();
 
-        System.out.println("Combien de couleurs voulez-vous ?(6 à 8)");
+        System.out.println("Combien de couleurs voulez-vous ? (6 à 8)");
         this.nombreCouleur = input.nextInt();
 
         System.out.println("Voulez vous autorisez les doublons ?(Oui ou Non)");
@@ -125,15 +125,41 @@ public class Tableau{
             System.out.println("Entrez la ligne à deviner : ");
             ArrayList<String> couleurs = new ArrayList<String>();
             this.ligneDeviner = new ArrayList<Pion>();
-            for(int i=0;i<nombrePion;i++){
+            // Pion pion1 = new Pion(Couleur.ROUGE);
+            // Pion pion2 = new Pion(Couleur.JAUNE);
+            // Pion pion3 = new Pion(Couleur.VERT);
+            // Pion pion4 = new Pion(Couleur.BLEU);
+            // Pion pion5 = new Pion(Couleur.CYAN);
+            // Pion pion6 = new Pion(Couleur.ROSE);
+            // Pion pion7 = new Pion(Couleur.VIOLET);
+            // Pion pion8 = new Pion(Couleur.BLANC);
+            for(int i = 0 ; i < nombrePion ; i++){
                 if(nombreCouleur == 6){
-                    System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE");
+                    System.out.println("Il y a les couleurs suivantes : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
+                                                                     ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
+                                                                     ", VERT" + (new Pion(Couleur.VERT).toString()) +
+                                                                     ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
+                                                                     ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
+                                                                     ", ROSE" + (new Pion(Couleur.ROSE).toString()));
                 }
                 if(nombreCouleur == 7){
-                    System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET");
+                    System.out.println("Il y a les couleurs suivantes : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
+                                                                     ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
+                                                                     ", VERT" + (new Pion(Couleur.VERT).toString()) +
+                                                                     ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
+                                                                     ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
+                                                                     ", ROSE" + (new Pion(Couleur.ROSE).toString()) +
+                                                                     ", VIOLET" + (new Pion(Couleur.VIOLET).toString()));
                 }
                 if(nombreCouleur == 8){
-                    System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC");
+                    System.out.println("Il y a les couleurs suivantes : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
+                                                                     ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
+                                                                     ", VERT" + (new Pion(Couleur.VERT).toString()) +
+                                                                     ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
+                                                                     ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
+                                                                     ", ROSE" + (new Pion(Couleur.ROSE).toString()) +
+                                                                     ", VIOLET" + (new Pion(Couleur.VIOLET).toString()) +
+                                                                     ", BLANC" + (new Pion(Couleur.BLANC).toString()));
                 }
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
                 String couleur = input.next();
@@ -269,10 +295,31 @@ public class Tableau{
             ArrayList<Pion> tentative = new ArrayList<Pion>();
             for(int i=0;i<nombrePion;i++){
                 if(nombreCouleur == 6){
-                    System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE");
+                    System.out.println("Il y a les couleurs suivantes : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
+                                                                     ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
+                                                                     ", VERT" + (new Pion(Couleur.VERT).toString()) +
+                                                                     ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
+                                                                     ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
+                                                                     ", ROSE" + (new Pion(Couleur.ROSE).toString()));
+                }
+                if(nombreCouleur == 7){
+                    System.out.println("Il y a les couleurs suivantes : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
+                                                                     ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
+                                                                     ", VERT" + (new Pion(Couleur.VERT).toString()) +
+                                                                     ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
+                                                                     ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
+                                                                     ", ROSE" + (new Pion(Couleur.ROSE).toString()) +
+                                                                     ", VIOLET" + (new Pion(Couleur.VIOLET).toString()));
                 }
                 if(nombreCouleur == 8){
-                    System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC");
+                    System.out.println("Il y a les couleurs suivantes : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
+                                                                     ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
+                                                                     ", VERT" + (new Pion(Couleur.VERT).toString()) +
+                                                                     ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
+                                                                     ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
+                                                                     ", ROSE" + (new Pion(Couleur.ROSE).toString()) +
+                                                                     ", VIOLET" + (new Pion(Couleur.VIOLET).toString()) +
+                                                                     ", BLANC" + (new Pion(Couleur.BLANC).toString()));
                 }
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
                 tentative.add(new Pion(Couleur.valueOf(input.next())));
