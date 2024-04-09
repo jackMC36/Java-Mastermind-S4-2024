@@ -13,7 +13,7 @@ public class Jeu {
         ligne.add(pion3);
         ligne.add(pion4);
 
-        ArrayList<Pion> add = new ArrayList<Pion>();
+        /* ArrayList<Pion> add = new ArrayList<Pion>();
         Pion pion5 = new Pion(Couleur.CYAN);
         Pion pion6 = new Pion(Couleur.ROSE);
         Pion pion7 = new Pion(Couleur.VIOLET);
@@ -28,6 +28,9 @@ public class Jeu {
 
         System.out.println(pion1.toString() + (pion2.toString()) + (pion3.toString()) + (pion4.toString()) + (pion5.toString()) + (pion6.toString()) + (pion7.toString()) + (pion8.toString()));
         System.out.println(pion1.equals(pion1b));
-        System.out.println(pion1.equals(pion2));
+        System.out.println(pion1.equals(pion2)); */
+
+        Tableau T2 = new Tableau(true);
+        T2.debutPartie();
     }
 }
