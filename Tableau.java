@@ -31,7 +31,7 @@ public class Tableau{
         System.out.println("Combien de pions voulez-vous ?(4 ou 5)");
         this.nombrePion = input.nextInt();
 
-        System.out.println("Combien de couleurs voulez-vous ?(6 ou 8)");
+        System.out.println("Combien de couleurs voulez-vous ?(6 à 8)");
         this.nombreCouleur = input.nextInt();
 
         if(machine){
@@ -73,6 +73,9 @@ public class Tableau{
             for(int i=0;i<nombrePion;i++){
                 if(nombreCouleur == 6){
                     System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE");
+                }
+                if(nombreCouleur == 7){
+                    System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET");
                 }
                 if(nombreCouleur == 8){
                     System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC");
