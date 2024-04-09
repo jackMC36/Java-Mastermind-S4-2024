@@ -18,7 +18,6 @@ public class Tableau{
     }
 
     public Tableau(boolean machine) {
-
         this.tableauTentative = new ArrayList<ArrayList<Pion>>();
 
         Tableau.clearScreen();
@@ -34,7 +33,7 @@ public class Tableau{
         System.out.println("Combien de couleurs voulez-vous ? (6 à 8)");
         this.nombreCouleur = input.nextInt();
 
-        System.out.println("Voulez vous autorisez les doublons ?(Oui ou Non)");
+        System.out.println("Voulez vous autorisez les doublons ? (Oui ou Non)");
         String doublon = input.next();
 
         if(machine){
@@ -111,14 +110,6 @@ public class Tableau{
             System.out.println("Entrez la ligne à deviner : ");
             ArrayList<String> couleurs = new ArrayList<String>();
             this.ligneDeviner = new ArrayList<Pion>();
-            // Pion pion1 = new Pion(Couleur.ROUGE);
-            // Pion pion2 = new Pion(Couleur.JAUNE);
-            // Pion pion3 = new Pion(Couleur.VERT);
-            // Pion pion4 = new Pion(Couleur.BLEU);
-            // Pion pion5 = new Pion(Couleur.CYAN);
-            // Pion pion6 = new Pion(Couleur.ROSE);
-            // Pion pion7 = new Pion(Couleur.VIOLET);
-            // Pion pion8 = new Pion(Couleur.BLANC);
             for(int i = 0 ; i < nombrePion ; i++){
                 if(nombreCouleur == 6){
                     System.out.println("Il y a les couleurs suivantes : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
