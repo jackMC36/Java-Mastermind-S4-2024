@@ -45,22 +45,22 @@ public class Tableau{
 
     //affichage, methode qui affiche le tableau de tentative
     public void affichage(){
-        for(int i=0;i<tentativeActuelle;i++){
+        for(int i = 0 ; i < (nombreTentative - tentativeActuelle) ; i++){
+                    String ligne = "[";
+                    for(int j=0;j<nombrePion;j++){
+                        ligne += " * ";
+                        if(j!=nombrePion-1){
+                            ligne+= " ; ";
+                        }                
+                    }
+                    ligne+="]";
+                    System.out.println(ligne);
+        }
+
+        for(int i = 0 ; i < tentativeActuelle ; i++){
             String ligne = "[";
             for(int j=0;j<nombrePion;j++){
                 ligne += tableauTentative.get(i).get(j).toString();
-                if(j!=nombrePion-1){
-                    ligne+= " ; ";
-                }                
-            }
-            ligne+="]";
-            System.out.println(ligne);
-        }
-
-        for(int i=0;i<nombreTentative-tentativeActuelle;i++){
-            String ligne = "[";
-            for(int j=0;j<nombrePion;j++){
-                ligne += " * ";
                 if(j!=nombrePion-1){
                     ligne+= " ; ";
                 }                

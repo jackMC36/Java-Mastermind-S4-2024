@@ -25,6 +25,7 @@ public class Jeu {
         Tableau T = new Tableau(ligne, 10, 4);
         T.ajouterTentative(add);
         T.affichage();
+
         System.out.println(pion1.toString() + (pion2.toString()) + (pion3.toString()) + (pion4.toString()) + (pion5.toString()) + (pion6.toString()) + (pion7.toString()) + (pion8.toString()));
         System.out.println(pion1.equals(pion1b));
         System.out.println(pion1.equals(pion2));
