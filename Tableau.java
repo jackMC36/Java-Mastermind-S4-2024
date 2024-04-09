@@ -14,20 +14,13 @@ public class Tableau{
         this.nombrePion = P;
     }
 
-<<<<<<< HEAD
-    /*ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
-=======
-    //ajouterTentative, methode qui ajoute une tentative au tableau de tentative
->>>>>>> refs/remotes/origin/main
+    /* ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
     public void ajouterTentative(ArrayList<Pion> tentative){
         tableauTentative.add(tentative);
         tentativeActuelle++;
     }
-<<<<<<< HEAD
+    
     /* verifierTentative, methode qui verifie si la tentative correspond au resultat attendu */
-=======
-    //verifierTentative, methode qui verifie si la tentative correspond au resultat attendu
->>>>>>> refs/remotes/origin/main
     public boolean verifierTentative(ArrayList<Pion> tentative){
         int bienPlace = 0;
         int malPlace = 0;
@@ -51,34 +44,47 @@ public class Tableau{
         }
     }
 
-<<<<<<< HEAD
     /* affichage, methode qui affiche le tableau de tentative */
-=======
-    //affichage, methode qui affiche le tableau de tentative
->>>>>>> refs/remotes/origin/main
     public void affichage(){
+        System.out.print("\n   +");
+        for(int e = 0 ; e < nombrePion ; e++){
+            System.out.print("-----+");
+        }
+        System.out.println();
         for(int i = 0 ; i < (nombreTentative - tentativeActuelle) ; i++){
-                    String ligne = "[";
-                    for(int j=0;j<nombrePion;j++){
-                        ligne += " * ";
-                        if(j!=nombrePion-1){
-                            ligne+= " ; ";
-                        }                
-                    }
-                    ligne+="]";
-                    System.out.println(ligne);
+            String ligne = "|";
+            for(int j=0;j<nombrePion;j++){
+                ligne += "     ";
+                if(j!=nombrePion-1){
+                    ligne+= "|";
+                }                
+            }
+            ligne+="|";
+            System.out.print(String.format("%2d ", (nombreTentative - i)));
+            System.out.println(ligne);
+            System.out.print("   +");
+            for(int e = 0 ; e < nombrePion ; e++){
+                System.out.print("-----+");
+            }
+            System.out.println();
         }
 
         for(int i = 0 ; i < tentativeActuelle ; i++){
-            String ligne = "[";
+            String ligne = "| ";
             for(int j=0;j<nombrePion;j++){
                 ligne += tableauTentative.get(i).get(j).toString();
                 if(j!=nombrePion-1){
-                    ligne+= " ; ";
+                    ligne+= " | ";
                 }                
             }
-            ligne+="]";
+            ligne+=" |";
+            System.out.print(String.format("%2d ", (tentativeActuelle - i)));
             System.out.println(ligne);
+            System.out.print("   +");
+            for(int e = 0 ; e < nombrePion ; e++){
+                System.out.print("-----+");
+            }
+            System.out.println();
         }
     }
 }
