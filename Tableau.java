@@ -33,41 +33,82 @@ public class Tableau{
         System.out.println("Combien de couleurs voulez-vous ?(6 à 8)");
         this.nombreCouleur = input.nextInt();
 
+        System.out.println("Voulez vous autorisez les doublons ?(Oui ou Non)");
+        String doublon = input.next();
+
         if(machine){
             this.ligneDeviner = new ArrayList<Pion>();
+            ArrayList<Integer> couleurs = new ArrayList<Integer>();
             for(int i=0;i<nombrePion;i++){
                 Random rand = new Random();
-                int couleur = rand.nextInt(nombreCouleur);
-                switch(couleur){
-                    case 0:
-                        this.ligneDeviner.add(new Pion(Couleur.ROUGE));
-                        break;
-                    case 1:
-                        this.ligneDeviner.add(new Pion(Couleur.JAUNE));
-                        break;
-                    case 2:
-                        this.ligneDeviner.add(new Pion(Couleur.VERT));
-                        break;
-                    case 3:
-                        this.ligneDeviner.add(new Pion(Couleur.BLEU));
-                        break;
-                    case 4:
-                        this.ligneDeviner.add(new Pion(Couleur.CYAN));
-                        break;
-                    case 5:
-                        this.ligneDeviner.add(new Pion(Couleur.ROSE));
-                        break;
-                    case 6:
-                        this.ligneDeviner.add(new Pion(Couleur.VIOLET));
-                        break;
-                    case 7:
-                        this.ligneDeviner.add(new Pion(Couleur.BLANC));
-                        break;
+                if(doublon=="Oui"){
+                    int couleur = rand.nextInt(nombreCouleur);
+                    switch(couleur){
+                        case 0:
+                            this.ligneDeviner.add(new Pion(Couleur.ROUGE));
+                            break;
+                        case 1:
+                            this.ligneDeviner.add(new Pion(Couleur.JAUNE));
+                            break;
+                        case 2:
+                            this.ligneDeviner.add(new Pion(Couleur.VERT));
+                            break;
+                        case 3:
+                            this.ligneDeviner.add(new Pion(Couleur.BLEU));
+                            break;
+                        case 4:
+                            this.ligneDeviner.add(new Pion(Couleur.CYAN));
+                            break;
+                        case 5:
+                            this.ligneDeviner.add(new Pion(Couleur.ROSE));
+                            break;
+                        case 6:
+                            this.ligneDeviner.add(new Pion(Couleur.VIOLET));
+                            break;
+                        case 7:
+                            this.ligneDeviner.add(new Pion(Couleur.BLANC));
+                            break;
+                    }
+                }
+                else{
+                    int couleur = rand.nextInt(nombreCouleur);
+                    while(couleurs.contains(couleur)){
+                        couleur = rand.nextInt(nombreCouleur);
+                    }
+                    couleurs.add(couleur);
+                    switch(couleur){
+                        case 0:
+                            this.ligneDeviner.add(new Pion(Couleur.ROUGE));
+                            break;
+                        case 1:
+                            this.ligneDeviner.add(new Pion(Couleur.JAUNE));
+                            break;
+                        case 2:
+                            this.ligneDeviner.add(new Pion(Couleur.VERT));
+                            break;
+                        case 3:
+                            this.ligneDeviner.add(new Pion(Couleur.BLEU));
+                            break;
+                        case 4:
+                            this.ligneDeviner.add(new Pion(Couleur.CYAN));
+                            break;
+                        case 5:
+                            this.ligneDeviner.add(new Pion(Couleur.ROSE));
+                            break;
+                        case 6:
+                            this.ligneDeviner.add(new Pion(Couleur.VIOLET));
+                            break;
+                        case 7:
+                            this.ligneDeviner.add(new Pion(Couleur.BLANC));
+                            break;
+                    }
+                
                 }
             }
         }
         else{
             System.out.println("Entrez la ligne à deviner : ");
+            ArrayList<String> couleurs = new ArrayList<String>();
             this.ligneDeviner = new ArrayList<Pion>();
             for(int i=0;i<nombrePion;i++){
                 if(nombreCouleur == 6){
@@ -80,7 +121,14 @@ public class Tableau{
                     System.out.println("Il y a les couleurs suivantes: ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC");
                 }
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
-                this.ligneDeviner.add(new Pion(Couleur.valueOf(input.next())));
+                String couleur = input.next();
+                while(couleurs.contains(couleur.toUpperCase())){
+                    System.out.println("Cette couleur est déjà utilisée, veuillez en choisir une autre : ");
+                    couleur = input.next();
+                }
+                couleurs.add(couleur.toUpperCase());
+
+                this.ligneDeviner.add(new Pion(Couleur.valueOf(couleur.toUpperCase())));
             }
         }
         Tableau.clearScreen();
@@ -165,6 +213,7 @@ public class Tableau{
     //debutPartie, methode qui lance une partie
     public void debutPartie(){
         boolean fin = false;
+        System.out.println("Début de la partie !");
         while(!fin){
             System.out.println("Entrez votre tentative : ");
             ArrayList<Pion> tentative = new ArrayList<Pion>();
