@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* Classe Tableau, qui représente le tableau de jeu du Mastermind */
 public class Tableau{
     Scanner input = new Scanner(System.in);
     private ArrayList<Pion> ligneDeviner; //tableau stockant la ligne de pion à deviner
@@ -16,7 +19,18 @@ public class Tableau{
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
 
+    /**
+     * La classe Tableau représente le tableau de jeu du Mastermind.
+     * 
+     * Ce tableau contient les informations sur les tentatives, les pions et les couleurs utilisées.
+     * Il peut être utilisé pour jouer contre l'ordinateur ou contre un autre joueur.
+     *
+     * 
+     * @param machine true si le jeu est joué contre une machine, false si il est joué contre un joueur
+     */
+    
     public Tableau(boolean machine) {
         this.tableauTentative = new ArrayList<ArrayList<Pion>>();
 
@@ -152,14 +166,29 @@ public class Tableau{
         Tableau.clearScreen();
     }
 
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
     /* ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
+    /**
+     * Ajoute une tentative au tableau de tentatives.
+     * 
+     * @param tentative La liste des pions de la tentative à ajouter.
+     */
     public void ajouterTentative(ArrayList<Pion> tentative){
         tableauTentative.add(tentative);
         tentativeActuelle++;
     }
 
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
     /* verifierTentative, methode qui verifie si la tentative correspond au resultat attendu */
 
+    /**
+     * Vérifie si une tentative est correcte.
+     * 
+     * @param tentative La liste des pions de la tentative.
+     * @return true si la tentative est correcte, sinon false.
+     */
     public boolean verifierTentative(ArrayList<Pion> tentative){
         int bienPlace = this.getNombreCorrect(tentative);
         if(bienPlace == nombrePion){
@@ -170,8 +199,16 @@ public class Tableau{
         }
     }
 
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
     /* affichage, methode qui affiche le tableau de tentative */
 
+    /**
+     * Calcule le nombre de pions correctement placés dans une tentative donnée.
+     * 
+     * @param tentative la liste des pions de la tentative
+     * @return le nombre de pions correctement placés
+     */
     public int getNombreCorrect(ArrayList<Pion> tentative){
         int bienPlace = 0;
         for(int i=0;i<nombrePion;i++){
@@ -182,8 +219,13 @@ public class Tableau{
         return bienPlace;
     }
 
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
 
     /* affichage, methode qui affiche le tableau de tentative */
+    /**
+     * Affiche le tableau de jeu avec les tentatives précédentes et les résultats.
+     */
     public void affichage(){
         System.out.print("\n   +");
         for(int e = 0 ; e < nombrePion ; e++){
@@ -228,7 +270,14 @@ public class Tableau{
         }
     }
 
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
     /* debutPartie, methode qui lance une partie */
+    /**
+     * Démarre une partie du jeu.
+     * Le joueur doit entrer une série de tentatives jusqu'à ce qu'il gagne ou atteigne le nombre maximum de tentatives.
+     * Affiche les messages appropriés en fonction du résultat de chaque tentative.
+     */
     public void debutPartie(){
         boolean fin = false;
         System.out.println("Début de la partie !");
@@ -278,4 +327,7 @@ public class Tableau{
             }
         }
     }
+
+/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
 }
