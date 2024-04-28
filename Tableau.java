@@ -10,8 +10,8 @@ public class Tableau{
     private ArrayList<Pion> ligneDeviner; //tableau stockant la ligne de pion à deviner
     private ArrayList<ArrayList<Pion>> tableauTentative; //tableau stockant les tentatives
     private int nombreTentative;
-    private int nombrePion;
     private int tentativeActuelle = 0;
+    private int nombrePion;
     private int nombreCouleur;
 
     /* méthode permettant de faire un 'clear' du terminal */
@@ -22,40 +22,22 @@ public class Tableau{
 /* ---------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
-     * La classe Tableau représente le tableau de jeu du Mastermind.
-     * 
-     * Ce tableau contient les informations sur les tentatives, les pions et les couleurs utilisées.
+     * Le tableau contient les informations sur les tentatives, les pions et les couleurs utilisées.
      * Il peut être utilisé pour jouer contre l'ordinateur ou contre un autre joueur.
-     *
-     * 
-     * @param machine true si le jeu est joué contre une machine, false si il est joué contre un joueur
-     */
+    */
     
-    public Tableau(boolean machine) {
+    public Tableau(Boolean multi, Boolean robot, int nombreTentative, int nombrePion, int nombreCouleur, Boolean doublon){
         this.tableauTentative = new ArrayList<ArrayList<Pion>>();
+        this.nombreTentative = nombreTentative;
+        this.nombrePion = nombrePion;
+        this.nombreCouleur = nombreCouleur;
 
-        Tableau.clearScreen();
-
-        System.out.println("Bienvenue dans le jeu Mastermind !");
-
-        System.out.println("Combien de tentatives voulez-vous ? (10 ou 12)");
-        this.nombreTentative = input.nextInt();
-           
-        System.out.println("Combien de pions voulez-vous ? (4 ou 5)");
-        this.nombrePion = input.nextInt();
-
-        System.out.println("Combien de couleurs voulez-vous ? (6 à 8)");
-        this.nombreCouleur = input.nextInt();
-
-        System.out.println("Voulez vous autorisez les doublons ? (Oui ou Non)");
-        String doublon = input.next();
-
-        if(machine){
+        if(robot){
             this.ligneDeviner = new ArrayList<Pion>();
             ArrayList<Integer> couleurs = new ArrayList<Integer>();
             for(int i=0;i<nombrePion;i++){
                 Random rand = new Random();
-                if(doublon=="Oui"){
+                if(doublon == true){
                     int couleur = rand.nextInt(nombreCouleur);
                     switch(couleur){
                         case 0:
@@ -116,12 +98,11 @@ public class Tableau{
                             this.ligneDeviner.add(new Pion(Couleur.BLANC));
                             break;
                     }
-                
                 }
             }
         }
         else{
-            System.out.println("Entrez la ligne à deviner : ");
+            System.out.println("Création de la ligne à deviner : ");
             ArrayList<String> couleurs = new ArrayList<String>();
             this.ligneDeviner = new ArrayList<Pion>();
             for(int i = 0 ; i < nombrePion ; i++){
@@ -154,12 +135,13 @@ public class Tableau{
                 }
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
                 String couleur = input.next();
-                while(couleurs.contains(couleur.toUpperCase())){
-                    System.out.println("Cette couleur est déjà utilisée, veuillez en choisir une autre : ");
-                    couleur = input.next();
+                if(doublon == false){
+                    while(couleurs.contains(couleur.toUpperCase())){
+                        System.out.println("Cette couleur est déjà utilisée, veuillez en choisir une autre : ");
+                        couleur = input.next();
+                    }
+                    couleurs.add(couleur.toUpperCase());
                 }
-                couleurs.add(couleur.toUpperCase());
-
                 this.ligneDeviner.add(new Pion(Couleur.valueOf(couleur.toUpperCase())));
             }
         }
@@ -200,8 +182,6 @@ public class Tableau{
     }
 
 /* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
-    /* affichage, methode qui affiche le tableau de tentative */
 
     /**
      * Calcule le nombre de pions correctement placés dans une tentative donnée.
@@ -252,22 +232,23 @@ public class Tableau{
 
         for(int i = tentativeActuelle ; i > 0 ; i--){
             String ligne = "| ";
-            for(int j=0;j<nombrePion;j++){
+            for(int j = 0 ; j < nombrePion ; j++){
                 ligne += tableauTentative.get(i-1).get(j).toString();
-                if(j!=nombrePion-1){
-                    ligne+= " | ";
+                if(j != nombrePion-1){
+                    ligne += " | ";
                 }                
             }
-            ligne+=" |";
+            ligne += " |";
             System.out.print(String.format("%2d ", (i)));
-            ligne+=" Bien placé : " + getNombreCorrect(tableauTentative.get(i-1));
+            ligne += " Bien placé : " + getNombreCorrect(tableauTentative.get(i-1));
             System.out.println(ligne);
             System.out.print("   +");
             for(int e = 0 ; e < nombrePion ; e++){
                 System.out.print("-----+");
             }
-            System.out.println("\n");
+            System.out.println();
         }
+        System.out.println();
     }
 
 /* ---------------------------------------------------------------------------------------------------------------------------------------- */
@@ -278,7 +259,7 @@ public class Tableau{
      * Le joueur doit entrer une série de tentatives jusqu'à ce qu'il gagne ou atteigne le nombre maximum de tentatives.
      * Affiche les messages appropriés en fonction du résultat de chaque tentative.
      */
-    public void debutPartie(){
+    public int debutPartie(){
         boolean fin = false;
         System.out.println("Début de la partie !");
         while(!fin){
@@ -313,7 +294,8 @@ public class Tableau{
                                                                      ", BLANC" + (new Pion(Couleur.BLANC).toString()));
                 }
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
-                tentative.add(new Pion(Couleur.valueOf(input.next())));
+                String reponse = input.next();
+                tentative.add(new Pion(Couleur.valueOf(reponse.toUpperCase())));
             }
             ajouterTentative(tentative);
             affichage();
@@ -326,8 +308,7 @@ public class Tableau{
                 fin = true;
             }
         }
-    }
-
+        return (nombreTentative-tentativeActuelle); //Nombre de tentative - 1 puisque l'on part de zéro
+    }  
 /* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
 }
