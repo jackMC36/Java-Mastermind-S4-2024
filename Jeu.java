@@ -79,10 +79,10 @@ public class Jeu {
             Tableau.clearScreen();
             System.out.println("Partie " + (i+1) + "/" + (nbPartie * nbJoueur));
             System.out.println("A vous de jouer " + prenom.get(i%prenom.size()));
-            Tableau plateauJeu = new Tableau(init.getMulti(), init.getRobot(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
+            Tableau plateauJeu = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
             int tentativeRestante = plateauJeu.debutPartie();
             score.set((i%prenom.size()), (score.get(i%prenom.size()) + tentativeRestante));
-            System.out.println("\nAppuyer sur n'importe quelle touche pour continuer ..."); //Cette ligne et celle d'après permettent de bloquer l'exécution du programme jusqu'à que le joueur appui sur une touche du clavier
+            System.out.println("\nAppuyer sur la touche Entrée pour continuer ..."); //Cette ligne et celle d'après permettent de bloquer l'exécution du programme jusqu'à que le joueur appui sur une touche du clavier
             input.nextLine();
         }
         Tableau.clearScreen();
@@ -117,7 +117,7 @@ public class Jeu {
             Jeu.multi(init);
         }
         else{
-            Tableau plateau = new Tableau(init.getMulti(), init.getRobot(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
+            Tableau plateau = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
             plateau.debutPartie(); 
         }
         

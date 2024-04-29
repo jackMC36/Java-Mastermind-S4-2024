@@ -54,4 +54,18 @@ public class Pion{
     }
 
 /* ---------------------------------------------------------------------------------------------------------------------------------------- */
+
+    /* Pour comparer si 2 objets pions ont la même couleur alors que par défaut, la méthode 'equals'
+    compare si ils ont la même adresse mémoire */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Pion other = (Pion) obj;
+        return couleur.equals(other.couleur);
+    }
 }

@@ -4,6 +4,7 @@ public class Initialisation {
     Scanner input = new Scanner(System.in);
     private Boolean multi;
     private Boolean robot;
+    private String niveau;
     private int nombreTentative;
     private int nombrePion;
     private int nombreCouleur;
@@ -38,6 +39,11 @@ public class Initialisation {
             }
         }
 
+        System.out.println("Choisissez le niveau de jeu : (Facile ou Difficile*)");
+        System.out.println("*FACILE : à chaque tour, il vous sera indiqué précisément pour chaque pion si la couleur et la position sont bonnes.");
+        System.out.println("*DIFFICILE : à chaque tour, il vous sera uniquement indiqué le nombre de pion avec la bonne couleur et bien placé ainsi que le nombre de pion avec la bonne couleur mais mal placé.");
+        this.niveau = input.next();
+
         System.out.println("Combien de tentatives voulez-vous ? (10 ou 12)");
         this.nombreTentative = input.nextInt();
            
@@ -63,6 +69,10 @@ public class Initialisation {
 
     public Boolean getRobot(){
         return this.robot;
+    }
+
+    public String getNiveau(){
+        return this.niveau;
     }
 
     public int getNbTentative(){
