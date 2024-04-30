@@ -1,21 +1,61 @@
 import java.util.Scanner;
 
+/**
+ * La classe Initialisation initialise le jeu. Elle récupère, par le biai de saisie clavier par l'utilisateur, les paramètres de la partie.
+ */
+
 public class Initialisation {
+    /**
+     * Créer un objet de type Scanner qui permet de lire une entrée d'un utilisateur à partir de la console.
+     */
     Scanner input = new Scanner(System.in);
+
+    /**
+     * Le mode de jeu. multi = true si le mode de jeu est défini sur multijoueur, false s'il est défini sur solo.
+     */
     private Boolean multi;
+
+    /**
+     * Indique si la ligne à deviner doit être choisi manuellement par un joueur ou automatiquement par un robot. robot = true si elle est choisi par "un robot", false sinon.
+     */
     private Boolean robot;
+
+    /**
+     * Le niveau du jeu.
+     */
     private String niveau;
+
+    /**
+     * Le nombre de tentatives autorisées.
+     */
     private int nombreTentative;
+
+    /**
+     * Le nombre de pions.
+     */
     private int nombrePion;
+
+    /**
+     * Le nombre de couleurs possibles.
+     */
     private int nombreCouleur;
+
+    /**
+     * Indique s'il est possible qu'une couleur de pion soit présente en double. doublon = true si les doublons sont autorisés, false sinon.
+    */
     private Boolean doublon;
 
-    /* méthode permettant de faire un 'clear' du terminal */
+    /**
+     * Réalise un "clear" du terminal. Efface toute les lignes de commande tapées avant.
+     */
     public static void clearScreen(){  
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
 
+    /**
+     * Constructeur de la classe Initialisation. Il initialise les paramètres du jeu en fonction des choix de l'utilisateur.
+     */
     public Initialisation(){
         Initialisation.clearScreen();
 
@@ -63,30 +103,65 @@ public class Initialisation {
         }
     }
 
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>multi</em>.
+     * 
+     * @return true si le mode de jeu est multijoueur, false sinon.
+     */
     public Boolean getMulti(){
         return this.multi;
     }
 
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>robot</em>.
+     * 
+     * @return true si la ligne à deviner doit être générée automatiquement par un robot, false si elle doit être saisie manuellement par l'utilisateur.
+     */
     public Boolean getRobot(){
         return this.robot;
     }
 
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>niveau</em>.
+     * 
+     * @return la valeur de l'attribut niveau (Facile ou Difficile).
+     */
     public String getNiveau(){
         return this.niveau;
     }
 
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>nombreTentative</em>.
+     * 
+     * @return la valeur de l'attribut nombreTentative (comprise entre 10 et 12).
+     */
     public int getNbTentative(){
         return this.nombreTentative;
     }
 
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>nombrePion</em>.
+     * 
+     * @return la valeur de l'attribut nombrePion (4 ou 5).
+     */
     public int getNbPion(){
         return this.nombrePion;
     }
 
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>nombreCouleur</em>.
+     * 
+     * @return la valeur de l'attribut nombreCouleur (comprise entre 6 et 8).
+     */
     public int getNbCouleur(){
         return this.nombreCouleur;
     }
 
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>doublon</em>.
+     * 
+     * @return true si les doublons de pions (on parle ici de la couleur) sont autorisés, false sinon.
+     */
     public Boolean getDoublon(){
         return this.doublon;
     }

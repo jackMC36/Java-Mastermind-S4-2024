@@ -1,8 +1,17 @@
 import java.util.EnumMap;
 
+/**
+ * L'énumérateur Couleur représente les possibilités de couleur pour un pion.
+ * 
+ * @author Kozik J., Galfré K.
+ */
+
 public enum Couleur{
     ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC;
 
+    /**
+     * EnumMap permettant de donner une représentation sous forme de chaîne de caractère pour chaque couleur.
+     */
     static EnumMap<Couleur, String> mapCouleur = new EnumMap<>(Couleur.class);
 
     static{

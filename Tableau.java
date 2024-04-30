@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
 /* Classe Tableau, qui représente le tableau de jeu du Mastermind */
 public class Tableau{
     Scanner input = new Scanner(System.in);
@@ -23,13 +21,10 @@ public class Tableau{
         System.out.flush();  
     }
 
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
     /**
      * Le tableau contient les informations sur les tentatives, les pions et les couleurs utilisées.
      * Il peut être utilisé pour jouer contre l'ordinateur ou contre un autre joueur.
     */
-    
     public Tableau(Boolean multi, Boolean robot, String niveau, int nombreTentative, int nombrePion, int nombreCouleur, Boolean doublon){
         this.tableauTentative = new ArrayList<ArrayList<Pion>>();
         this.controlF = new ArrayList<ArrayList<String>>();
@@ -155,8 +150,6 @@ public class Tableau{
         Tableau.clearScreen();
     }
 
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
     /* ajouterTentative, methode qui ajoute une tentative au tableau de tentative */
     /**
      * Ajoute une tentative au tableau de tentatives.
@@ -168,15 +161,11 @@ public class Tableau{
         tentativeActuelle++;
     }
 
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
-    /* verifierTentative, methode qui verifie si la tentative correspond au resultat attendu */
-
     /**
-     * Vérifie si une tentative est correcte.
+     * Vérifie si une tentative est correcte. C'est-à-dire qu'elle vérifie si la tentative correspond à la ligne à deviner.
      * 
      * @param tentative La liste des pions de la tentative.
-     * @return true si la tentative est correcte, sinon false.
+     * @return true si la tentative correspond à la ligne à deviner, sinon false.
      */
     public boolean verifierTentative(ArrayList<Pion> tentative){
         int bienPlace = this.getNombreCorrect(tentative);
@@ -187,8 +176,6 @@ public class Tableau{
             return false;
         }
     }
-
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
 
     /**
      * Calcule le nombre de pions correctement placés dans une tentative donnée.
@@ -275,10 +262,6 @@ public class Tableau{
         return controlD;
     }
 
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
-
-    /* affichage, methode qui affiche le tableau de tentative */
     /**
      * Affiche le tableau de jeu avec les tentatives précédentes et les résultats.
      */
@@ -336,9 +319,6 @@ public class Tableau{
         System.out.println();
     }
 
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
-
-    /* debutPartie, methode qui lance une partie */
     /**
      * Démarre une partie du jeu.
      * Le joueur doit entrer une série de tentatives jusqu'à ce qu'il gagne ou atteigne le nombre maximum de tentatives.
@@ -400,6 +380,5 @@ public class Tableau{
             }
         }
         return (nombreTentative-tentativeActuelle); //Nombre de tentative - 1 puisque l'on part de zéro
-    }  
-/* ---------------------------------------------------------------------------------------------------------------------------------------- */
+    }
 }
