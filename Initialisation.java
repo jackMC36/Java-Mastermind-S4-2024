@@ -3,10 +3,9 @@ import java.util.Scanner;
 /**
  * La classe Initialisation initialise le jeu. Elle récupère, par le biai de saisie clavier par l'utilisateur, les paramètres de la partie.
  */
-
 public class Initialisation {
     /**
-     * Créer un objet de type Scanner qui permet de lire une entrée d'un utilisateur à partir de la console.
+     * Crée un objet de type Scanner qui permet de lire une entrée d'un utilisateur à partir de la console.
      */
     Scanner input = new Scanner(System.in);
 
@@ -86,12 +85,24 @@ public class Initialisation {
 
         System.out.println("Combien de tentatives voulez-vous ? (10 ou 12)");
         this.nombreTentative = input.nextInt();
+        while((nombreTentative != 10) && (nombreTentative != 12)){ //10 ou 12 conformément aux consignes
+            System.out.println("Saisie incorrecte, veuillez choisir une des propositions suivantes : 10 ou 12");
+            this.nombreTentative = input.nextInt();
+        }
            
         System.out.println("Combien de pions voulez-vous ? (4 ou 5)");
         this.nombrePion = input.nextInt();
+        while((nombrePion != 4) && (nombrePion != 5)){ //4 ou 5 conformément aux consignes
+            System.out.println("Saisie incorrecte, veuillez choisir une des propositions suivantes : 4 ou 5");
+            this.nombrePion = input.nextInt();
+        }
 
         System.out.println("Combien de couleurs voulez-vous ? (6 à 8)");
         this.nombreCouleur = input.nextInt();
+        while((nombreCouleur != 6) && (nombreCouleur != 7) && (nombreCouleur != 8)){ //entre 6 et 8 conformément aux consignes
+            System.out.println("Saisie incorrecte, veuillez choisir un chiffre entre 6 et 8");
+            this.nombreCouleur = input.nextInt();
+        }
 
         System.out.println("Voulez vous autorisez les doublons ? (Oui ou Non)");
         String choix2 = input.next();
