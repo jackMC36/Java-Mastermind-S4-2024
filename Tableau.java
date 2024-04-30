@@ -54,11 +54,6 @@ public class Tableau{
     private int nombrePion;
 
     /**
-     * Le nombre de couleurs possibles.
-     */
-    private int nombreCouleur;
-
-    /**
      * Réalise un "clear" du terminal. Efface toute les lignes de commande tapées avant.
      */
     public static void clearScreen(){  
@@ -85,7 +80,6 @@ public class Tableau{
         this.nombreTentative = nombreTentative;
         this.tentativeActuelle = 0;
         this.nombrePion = nombrePion;
-        this.nombreCouleur = nombreCouleur;
         if(robot){
             this.ligneDeviner = new ArrayList<Pion>();
             ArrayList<Integer> couleurs = new ArrayList<Integer>();
@@ -203,6 +197,22 @@ public class Tableau{
     }
 
     /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>tableauTentative</em>.
+     * @return la liste de liste stockant toutes les tentatives déjà réalisées.
+     */
+    public ArrayList<ArrayList<Pion>> getTabTentative(){
+        return this.tableauTentative;
+    }
+
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>tentativeActuelle</em>.
+     * @return le numéro de la tentative actuelle.
+     */
+    public int getTentativeActuelle(){
+        return this.tentativeActuelle;
+    }
+
+    /**
      * Rempli le tableau de tentatives. Ajoute la dernière tentative au tableau de tentatives et incrémente le compteur de tentative déjà réalisée <em>tentativeActuelle</em>.
      * 
      * @param tentative La liste des pions de la dernière tentative, celle à ajouter.
@@ -225,14 +235,23 @@ public class Tableau{
         return false;
     }
 
-    /* Choix fait : si notre ligne à deviner contient un seul pion rouge et que la ligne de 
-    tentative en contient 2 dont aucun n'est à la bonne place, on dira que le premier est 
-    BC/MP et le deuxième sera considéré comme faux (ni BC, ni BP) */
+    /* Choix d'implémentation concernant les 2 fonctions suivantes : si notre ligne à deviner contient un seul pion rouge et 
+    que la ligne de tentative en contient 2 dont aucun n'est à la bonne place, on dira que le premier est BC/MP 
+    et le deuxième sera considéré comme faux (ni BC, ni BP) */
 
-    /* Cette première fonction fait le controle en facile, elle détaille pour chaque pion s'ils
-    ont la bonne couleur, puis s'ils sont bien placés */
+    /**
+     * Contrôle, si le niveau a été défini sur Facile, la dernière tentative.
+     * Cette méthode compare une tentative avec la ligne à deviner et donne des indications pour chaque pion sur sa couleur et sa position.
+     * Les correspondances sont stockées dans une liste de contrôle temporaire qui est ajoutée à la liste de contrôles globale, une liste de liste qui permet ensuite de faire l'affichage dans la console.
+     * Les indications de correspondance sont les suivantes :
+     * - "BC/BP" si la couleur et la position du pion sont correctes.
+     * - "BC/MP" si la couleur est correcte mais la position est incorrecte.
+     * - "-" si aucun critère de correspondance n'est rempli.
+     *
+     * @param tentative la tentative de l'utilisateur à comparer avec la ligne à deviner.
+     */
 
-    public ArrayList<ArrayList<String>> controleModeFacile(ArrayList<Pion> tentative){
+    public void controleModeFacile(ArrayList<Pion> tentative){
         ArrayList<String> controlTmp = new ArrayList<String>();
         ArrayList<Pion> tmp = new ArrayList<Pion>(ligneDeviner);
         for(int i = 0 ; i < nombrePion ; i++){
@@ -259,13 +278,20 @@ public class Tableau{
             }
         }
         controlF.add(controlTmp);
-        return controlF;
     }
 
     /* Cette deuxième fonction fait le controle en difficile, elle n'indique que le nombre
     de pion par catégorie (BC/BP & BC/MP) */
 
-    public ArrayList<ArrayList<Integer>> controleModeDifficile(ArrayList<Pion> tentative){
+    /**
+     * Contrôle, si le niveau a été défini sur Difficile, la dernière tentative.
+     * Cette méthode compare une tentative avec la ligne à deviner et donne des indications sur le nombre de pion dont la couleur et bonne et qui sont bien placé ainsi que sur le nombre de pion dont la couleur est bonne mais qui sont mal placé.
+     * Les valeurs sont stockées dans une liste de contrôle temporaire qui est ajoutée à la liste de contrôles globale, une liste de liste qui permet ensuite de faire l'affichage dans la console.
+     *
+     * @param tentative la tentative de l'utilisateur à comparer avec la ligne à deviner.
+     */
+
+    public void controleModeDifficile(ArrayList<Pion> tentative){
         ArrayList<Integer> controlTmp = new ArrayList<Integer>();
         controlTmp.add(0);
         controlTmp.add(0); //On initialise les 2 colonnes (celle des BC/BP et celle des BC/MP) à 0 puis par la suite on utilise set pour mettre à jour
@@ -291,11 +317,11 @@ public class Tableau{
             }
         }
         controlD.add(controlTmp);
-        return controlD;
     }
 
     /**
-     * Affiche le tableau de jeu avec les tentatives précédentes et les résultats.
+     * Affiche le plateau de jeu avec les tentatives précédentes et leurs résultats.
+     * Cette méthode affiche le plateau de jeu en affichant les tentatives précédentes ainsi que les indications correspondantes pour chaque tentative. Les tentatives sont affichées avec leur numéro correspondant.
      */
     public void affichage(){
         System.out.println("\n-----");
@@ -352,10 +378,13 @@ public class Tableau{
     }
 
     /**
-     * Démarre une partie du jeu.
-     * Le joueur doit entrer une série de tentatives jusqu'à ce qu'il gagne ou atteigne le nombre maximum de tentatives.
-     * Affiche les messages appropriés en fonction du résultat de chaque tentative.
+     * Démarre une nouvelle partie du jeu.
+     * Cette méthode gère le déroulement d'une partie du jeu de Mastermind (saisie des tentatives par l'utilisateur, vérification des tentatives et affichage du plateau de jeu).
+     * Elle s'arrête lorsque le joueur découvre la bonne combinaison de pion ou lorsque le nombre maximum de tentative est atteint.
+     * 
+     * @return le nombre de tentative restante à la fin de la partie.
      */
+    /*
     public int debutPartie(){
         boolean fin = false;
         System.out.println("Début de la partie !");
@@ -396,10 +425,10 @@ public class Tableau{
             }
             ajouterTentative(tentative);
             if(niveau.equalsIgnoreCase("Facile")){
-                ArrayList<ArrayList<String>> controlF = controleModeFacile(tableauTentative.get(tentativeActuelle-1));
+                controleModeFacile(tableauTentative.get(tentativeActuelle-1));
             }
             else{
-                ArrayList<ArrayList<Integer>> controlD = controleModeDifficile(tableauTentative.get(tentativeActuelle-1));
+                controleModeDifficile(tableauTentative.get(tentativeActuelle-1));
             }
             affichage();
             if(verifierTentative(tentative)){
@@ -412,5 +441,5 @@ public class Tableau{
             }
         }
         return (nombreTentative-tentativeActuelle);
-    }
+    }*/
 }
