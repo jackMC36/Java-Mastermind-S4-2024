@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+ * La classe Jeu représente le moteur de jeu pour le Mastermind.
+ * Elle permet de démarrer une nouvelle partie et gérer le déroulement du jeu.
  */
 public class Jeu {
     /**
@@ -10,7 +11,9 @@ public class Jeu {
      * Cette méthode gère le déroulement d'une partie du jeu de Mastermind (saisie des tentatives par l'utilisateur, vérification des tentatives et affichage du plateau de jeu).
      * Elle s'arrête lorsque le joueur découvre la bonne combinaison de pion ou lorsque le nombre maximum de tentative est atteint.
      * 
-     * @return le nombre de tentative restante à la fin de la partie.
+     * @param init l'objet Initialisation contenant les paramètres généraux de la partie.
+     * @param plateau le plateau de jeu utilisé pour stocker les tentatives et les résultats.
+     * @return le nombre de tentatives restantes à la fin de la partie.
      */
     public static int partie(Initialisation init, Tableau plateau){
         Scanner scanner = new Scanner(System.in);
@@ -71,6 +74,13 @@ public class Jeu {
         return (init.getNbTentative()-plateau.getTentativeActuelle());
     }
 
+    /**
+     * Affiche la liste des prénoms des joueurs.
+     * En mode multijoueur, cette fonction permet d'afficher, à la fin de la partie, la liste des prénoms de tout les joueurs (pour afficher les résultats de chacun).
+     * 
+     * @param nbJoueur le nombre de joueurs.
+     * @param prenom la liste des prénoms des joueurs.
+     */
     public static void affichage(int nbJoueur, ArrayList<String> prenom){
         System.out.print("+");
         for(int e = 0 ; e < nbJoueur ; e++){
@@ -96,6 +106,14 @@ public class Jeu {
         System.out.println();
     }
 
+    /**
+     * Affiche la liste des scores des joueurs.
+     * En mode multijoueur, cette fonction permet d'afficher, à la fin de la partie, la liste des scores de tout les joueurs (en dessous de celle des prénoms).
+     * 
+     * @param nbJoueur le nombre de joueurs.
+     * @param score la liste des scores des joueurs.
+     * @param prenom la liste des prénoms des joueurs.
+     */
     public static void affichage2(int nbJoueur, ArrayList<Integer> score, ArrayList<String> prenom){
         System.out.print("+");
         for(int e = 0 ; e < nbJoueur ; e++){
@@ -124,6 +142,12 @@ public class Jeu {
         System.out.println("\n");
     }
 
+    /**
+     * Lance une partie en mode multijoueur.
+     * Cette méthode permet à plusieurs joueurs de jouer tour à tour et affiche les scores à la fin de toutes les parties.
+     * 
+     * @param init l'objet Initialisation contenant les paramètres généraux de la partie.
+     */
     public static void multi(Initialisation init){
         Scanner input = new Scanner(System.in);
         System.out.println("Nombre de joueur ?");
@@ -178,8 +202,13 @@ public class Jeu {
         input.close();
     }
 
+    /**
+     * Méthode principale permettant d'éxécuter le programme.
+     * Elle initialise les paramètres généraux de jeu et lance une partie en mode solo ou multijoueur.
+     * 
+     * @param args les arguments de la ligne de commande (non utilisés pour notre programme de Mastermind)
+     */
     public static void main(String[] args){
-
         Initialisation init = new Initialisation();
         if(init.getMulti() == true){
             Jeu.multi(init);
@@ -187,7 +216,6 @@ public class Jeu {
         else{
             Tableau plateau = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
             Jeu.partie(init, plateau); 
-        }
-        
+        }    
     }
 }
