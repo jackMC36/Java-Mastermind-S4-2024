@@ -3,19 +3,50 @@ import java.util.Scanner;
 
 /**
  * La classe Jeu représente le moteur de jeu pour le Mastermind.
- * Elle permet de démarrer une nouvelle partie et gérer le déroulement du jeu.
+ * Elle gère l'initialisation et le déroulement du jeu.
  */
 public class Jeu {
+    /**
+     * L'objet Initialisation contenant les paramètres de la partie.
+     */
+    private Initialisation init;
+
+    /**
+     * L'objet Tableau utilisé pour gérer le plateau de jeu (ajouter et stocker les tentatives) et stocker la ligne à deviner.
+     */
+    private Tableau plateau;
+
+    /**
+     * Constructeur de la classe Jeu.
+     * Initialise et lance le jeu.
+     */
+    public Jeu(){
+        init = new Initialisation();
+        lancementJeu();
+    }
+
+    /**
+     * Méthode permettant de lancer le jeu en fonction du mode choisi.
+     * Si le mode multijoueur est activé, lance le mode multijoueur, sinon lance une partie solo.
+     */
+    public void lancementJeu(){
+        if(init.getMulti() == true){
+            this.multi();
+        }
+        else{
+            plateau = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
+            this.partie(); 
+        } 
+    }
+
     /**
      * Démarre une nouvelle partie du jeu.
      * Cette méthode gère le déroulement d'une partie du jeu de Mastermind (saisie des tentatives par l'utilisateur, vérification des tentatives et affichage du plateau de jeu).
      * Elle s'arrête lorsque le joueur découvre la bonne combinaison de pion ou lorsque le nombre maximum de tentative est atteint.
      * 
-     * @param init l'objet Initialisation contenant les paramètres généraux de la partie.
-     * @param plateau le plateau de jeu utilisé pour stocker les tentatives et les résultats.
      * @return le nombre de tentatives restantes à la fin de la partie.
      */
-    public static int partie(Initialisation init, Tableau plateau){
+    public int partie(){
         Scanner scanner = new Scanner(System.in);
         boolean fin = false;
         System.out.println("Début de la partie !");
@@ -81,7 +112,7 @@ public class Jeu {
      * @param nbJoueur le nombre de joueurs.
      * @param prenom la liste des prénoms des joueurs.
      */
-    public static void affichage(int nbJoueur, ArrayList<String> prenom){
+    public void affichage(int nbJoueur, ArrayList<String> prenom){
         System.out.print("+");
         for(int e = 0 ; e < nbJoueur ; e++){
             for(int i = 0 ; i < (prenom.get(e).length() + 2) ; i++){
@@ -114,7 +145,7 @@ public class Jeu {
      * @param score la liste des scores des joueurs.
      * @param prenom la liste des prénoms des joueurs.
      */
-    public static void affichage2(int nbJoueur, ArrayList<Integer> score, ArrayList<String> prenom){
+    public void affichage2(int nbJoueur, ArrayList<Integer> score, ArrayList<String> prenom){
         System.out.print("+");
         for(int e = 0 ; e < nbJoueur ; e++){
             for(int i = 0 ; i < (prenom.get(e).length() + 2) ; i++){
@@ -143,53 +174,36 @@ public class Jeu {
     }
 
     /**
-     * Lance une partie en mode multijoueur.
-     * Cette méthode permet à plusieurs joueurs de jouer tour à tour et affiche les scores à la fin de toutes les parties.
+     * Gère le mode multijoueur.
+     * Cette méthode permet à plusieurs joueurs de jouer tour à tour en lançant plusieurs parties et affiche les scores à la fin de toutes les parties.
      * 
      * @param init l'objet Initialisation contenant les paramètres généraux de la partie.
      */
-    public static void multi(Initialisation init){
+    public void multi(){
         Scanner input = new Scanner(System.in);
-        System.out.println("Nombre de joueur ?");
-        int nbJoueur = input.nextInt();
-        while(nbJoueur < 2){
-            System.out.println("ATTENTION, LE NOMBRE DE JOUEUR DOIT ÊTRE SUPÉRIEUR OU ÉGALE À 2");
-            System.out.println("Nombre de joueur ?");
-            nbJoueur = input.nextInt();
-        }
-        ArrayList<String> prenom = new ArrayList<String>();
-        ArrayList<Integer> score = new ArrayList<Integer>();
-        for(int i = 0 ; i < nbJoueur ; i++){
-            System.out.println("Joueur " + (i+1) +" : quel est votre nom ?");
-            prenom.add(input.next());
-            score.add(0); //On initialise tout les scores à 0
-        }
-        System.out.print("Saisissez le nombre de partie par joueur à réaliser : ");
-        int nbPartie = input.nextInt();
-        input.nextLine();
-        for(int i = 0 ; i < (nbPartie * nbJoueur) ; i ++){
+        for(int i = 0 ; i < (init.getNbPartie() * init.getNbJoueur()) ; i ++){
             Tableau.clearScreen();
-            System.out.println("Partie " + (i+1) + "/" + (nbPartie * nbJoueur));
-            System.out.println("A vous de jouer " + prenom.get(i%prenom.size()));
-            Tableau plateauJeu = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
-            int tentativeRestante = Jeu.partie(init, plateauJeu);
-            score.set((i%prenom.size()), (score.get(i%prenom.size()) + tentativeRestante));
+            System.out.println("Partie " + (i+1) + "/" + (init.getNbPartie() * init.getNbJoueur()));
+            System.out.println("A vous de jouer " + init.getPrenom().get(i%init.getPrenom().size()));
+            plateau = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
+            int tentativeRestante = this.partie();
+            init.getScore().set((i%init.getPrenom().size()), (init.getScore().get(i%init.getPrenom().size()) + tentativeRestante));
             System.out.print("\nAppuyer sur la touche Entrée pour continuer ..."); //Cette ligne et celle d'après permettent de bloquer l'exécution du programme jusqu'à que le joueur appui sur une touche du clavier
             input.nextLine();
         }
         Tableau.clearScreen();
         System.out.println("Fin de la partie ! Félicitations à vous !\n");
         System.out.println("TABLEAU DES SCORES");
-        Jeu.affichage(nbJoueur, prenom);
-        Jeu.affichage2(nbJoueur, score, prenom);
+        this.affichage(init.getNbJoueur(), init.getPrenom());
+        this.affichage2(init.getNbJoueur(), init.getScore(), init.getPrenom());
         int gagnant = 0;
         Boolean execo = false;
-        for(int i = 1 ; i < nbJoueur ; i++){
-            if(score.get(i) > score.get(gagnant)){
+        for(int i = 1 ; i < init.getNbJoueur() ; i++){
+            if(init.getScore().get(i) > init.getScore().get(gagnant)){
                 gagnant = i;
                 execo = false;
             }
-            else if(score.get(i) == score.get(gagnant)){
+            else if(init.getScore().get(i) == init.getScore().get(gagnant)){
                 execo = true;
             }
         }
@@ -197,25 +211,8 @@ public class Jeu {
             System.out.println("Execo ! Réessayez !");
         }
         else{
-            System.out.println("Félicitation au gagnant : " + prenom.get(gagnant));
+            System.out.println("Félicitation au gagnant : " + init.getPrenom().get(gagnant));
         }
         input.close();
-    }
-
-    /**
-     * Méthode principale permettant d'éxécuter le programme.
-     * Elle initialise les paramètres généraux de jeu et lance une partie en mode solo ou multijoueur.
-     * 
-     * @param args les arguments de la ligne de commande (non utilisés pour notre programme de Mastermind)
-     */
-    public static void main(String[] args){
-        Initialisation init = new Initialisation();
-        if(init.getMulti() == true){
-            Jeu.multi(init);
-        }
-        else{
-            Tableau plateau = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
-            Jeu.partie(init, plateau); 
-        }    
     }
 }

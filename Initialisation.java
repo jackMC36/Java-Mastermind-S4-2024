@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * La classe Initialisation initialise le jeu. Elle récupère, par le biai de saisie clavier par l'utilisateur, les paramètres de la partie.
@@ -13,6 +14,26 @@ public class Initialisation {
      * Le mode de jeu. multi = true si le mode de jeu est défini sur multijoueur, false s'il est défini sur solo.
      */
     private Boolean multi;
+
+    /**
+     * Le nombre de joueur en mode multijoueur.
+     */
+    private int nbJoueur;
+
+    /**
+     * La liste des prénoms de tout les joueurs en mode multijoueur.
+     */
+    private ArrayList<String> prenom;
+
+    /**
+     * La liste des scores de tout les joueurs en mode multijoueur.
+     */
+    private ArrayList<Integer> score;
+
+    /**
+     * Le nombre de partie par joueur en mode multijoueur.
+     */
+    private int nbPartie;
 
     /**
      * Indique si la ligne à deviner doit être choisi manuellement par un joueur ou automatiquement par un robot. robot = true si elle est choisi par "un robot", false sinon.
@@ -68,6 +89,22 @@ public class Initialisation {
         }
         else{
             this.multi = true;
+            System.out.println("Nombre de joueur ?");
+            this.nbJoueur = input.nextInt();
+            while(nbJoueur < 2){
+                System.out.println("ATTENTION, LE NOMBRE DE JOUEUR DOIT ÊTRE SUPÉRIEUR OU ÉGALE À 2");
+                System.out.println("Nombre de joueur ?");
+                this.nbJoueur = input.nextInt();
+            }
+            this.prenom = new ArrayList<String>();
+            this.score = new ArrayList<Integer>();
+            for(int i = 0 ; i < nbJoueur ; i++){
+                System.out.println("Joueur " + (i+1) +" : quel est votre nom ?");
+                prenom.add(input.next());
+                score.add(0); //On initialise tout les scores à 0
+            }
+            System.out.print("Saisissez le nombre de partie par joueur à réaliser : ");
+            this.nbPartie = input.nextInt();
             System.out.println("Souhaitez-vous choisir manuellement le modèle à deviner ? (Oui ou Non)");
             String choix = input.next();
             if(choix.equalsIgnoreCase("Oui")){
@@ -121,6 +158,42 @@ public class Initialisation {
      */
     public Boolean getMulti(){
         return this.multi;
+    }
+
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>nbJoueur</em>.
+     * 
+     * @return le nombre de joueur (en mode multi).
+     */
+    public int getNbJoueur(){
+        return this.nbJoueur;
+    }
+
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>prenom</em>.
+     * 
+     * @return la liste des prénoms de tout les joueurs (en mode multi).
+     */
+    public ArrayList<String> getPrenom(){
+        return this.prenom;
+    }
+
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>score</em>.
+     * 
+     * @return la liste des scores de tout les joueurs (en mode multi).
+     */
+    public ArrayList<Integer> getScore(){
+        return this.score;
+    }
+
+    /**
+     * Getteur renvoyant la valeur de l'attribut privé <em>nbPartie</em>.
+     * 
+     * @return le nombre de partie par joueur (en mode multi).
+     */
+    public int getNbPartie(){
+        return this.nbPartie;
     }
 
     /**
