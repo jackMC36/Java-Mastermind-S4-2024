@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * 
+ * TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
  */
 public class Jeu {
     /**
@@ -13,7 +13,7 @@ public class Jeu {
      * @return le nombre de tentative restante à la fin de la partie.
      */
     public static int partie(Initialisation init, Tableau plateau){
-        Scanner input = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         boolean fin = false;
         System.out.println("Début de la partie !");
         while(!fin){
@@ -48,7 +48,7 @@ public class Jeu {
             ArrayList<Pion> tentative = new ArrayList<Pion>();
             for(int i = 0 ; i < init.getNbPion() ; i++){
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
-                String reponse = input.next();
+                String reponse = scanner.next();
                 tentative.add(new Pion(Couleur.valueOf(reponse.toUpperCase())));
             }
             plateau.ajouterTentative(tentative);
@@ -68,7 +68,6 @@ public class Jeu {
                 fin = true;
             }
         }
-        input.close();
         return (init.getNbTentative()-plateau.getTentativeActuelle());
     }
 
@@ -151,7 +150,7 @@ public class Jeu {
             Tableau plateauJeu = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
             int tentativeRestante = Jeu.partie(init, plateauJeu);
             score.set((i%prenom.size()), (score.get(i%prenom.size()) + tentativeRestante));
-            System.out.println("\nAppuyer sur la touche Entrée pour continuer ..."); //Cette ligne et celle d'après permettent de bloquer l'exécution du programme jusqu'à que le joueur appui sur une touche du clavier
+            System.out.print("\nAppuyer sur la touche Entrée pour continuer ..."); //Cette ligne et celle d'après permettent de bloquer l'exécution du programme jusqu'à que le joueur appui sur une touche du clavier
             input.nextLine();
         }
         Tableau.clearScreen();

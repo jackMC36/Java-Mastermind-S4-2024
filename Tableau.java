@@ -2,10 +2,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
 
-/* Classe Tableau, qui représente le tableau de jeu du Mastermind */
-
 /**
- * La classe Tableau crée un plateau de jeu et le gère. Elle s'occupe de le remplir, de l'afficher, etc. Elle s'occupe également du déroulement de la partie.
+ * La classe Tableau crée un plateau de jeu et le gère. Elle s'occupe de le remplir, de l'afficher, etc.
  */
 public class Tableau{
     /**
@@ -365,7 +363,7 @@ public class Tableau{
             }
             else{
                 ligne += " BC / BP : " + controlD.get(i-1).get(0);
-                ligne += " BC / MP : " + controlD.get(i-1).get(1);
+                ligne += " - BC / MP : " + controlD.get(i-1).get(1);
             }
             System.out.println(ligne);
             System.out.print("   +");
@@ -376,70 +374,4 @@ public class Tableau{
         }
         System.out.println();
     }
-
-    /**
-     * Démarre une nouvelle partie du jeu.
-     * Cette méthode gère le déroulement d'une partie du jeu de Mastermind (saisie des tentatives par l'utilisateur, vérification des tentatives et affichage du plateau de jeu).
-     * Elle s'arrête lorsque le joueur découvre la bonne combinaison de pion ou lorsque le nombre maximum de tentative est atteint.
-     * 
-     * @return le nombre de tentative restante à la fin de la partie.
-     */
-    /*
-    public int debutPartie(){
-        boolean fin = false;
-        System.out.println("Début de la partie !");
-        while(!fin){
-            System.out.println("Entrez votre tentative : ");
-            if(nombreCouleur == 6){
-                System.out.println("Voici les couleurs possibles : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
-                                                                    ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
-                                                                    ", VERT" + (new Pion(Couleur.VERT).toString()) +
-                                                                    ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
-                                                                    ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
-                                                                    ", ROSE" + (new Pion(Couleur.ROSE).toString()));
-            }
-            if(nombreCouleur == 7){
-                System.out.println("Voici les couleurs possibles : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
-                                                                    ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
-                                                                    ", VERT" + (new Pion(Couleur.VERT).toString()) +
-                                                                    ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
-                                                                    ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
-                                                                    ", ROSE" + (new Pion(Couleur.ROSE).toString()) +
-                                                                    ", VIOLET" + (new Pion(Couleur.VIOLET).toString()));
-            }
-            if(nombreCouleur == 8){
-                System.out.println("Voici les couleurs possibles : ROUGE" + (new Pion(Couleur.ROUGE).toString()) + 
-                                                                    ", JAUNE" + (new Pion(Couleur.JAUNE).toString()) +
-                                                                    ", VERT" + (new Pion(Couleur.VERT).toString()) +
-                                                                    ", BLEU" + (new Pion(Couleur.BLEU).toString()) +
-                                                                    ", CYAN" + (new Pion(Couleur.CYAN).toString()) +
-                                                                    ", ROSE" + (new Pion(Couleur.ROSE).toString()) +
-                                                                    ", VIOLET" + (new Pion(Couleur.VIOLET).toString()) +
-                                                                    ", BLANC" + (new Pion(Couleur.BLANC).toString()));
-            }
-            ArrayList<Pion> tentative = new ArrayList<Pion>();
-            for(int i=0;i<nombrePion;i++){
-                System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
-                String reponse = input.next();
-                tentative.add(new Pion(Couleur.valueOf(reponse.toUpperCase())));
-            }
-            ajouterTentative(tentative);
-            if(niveau.equalsIgnoreCase("Facile")){
-                controleModeFacile(tableauTentative.get(tentativeActuelle-1));
-            }
-            else{
-                controleModeDifficile(tableauTentative.get(tentativeActuelle-1));
-            }
-            affichage();
-            if(verifierTentative(tentative)){
-                System.out.println("Bravo, vous avez gagné !");
-                fin = true;
-            }
-            else if(tentativeActuelle == nombreTentative){
-                System.out.println("Désolé, vous avez perdu !");
-                fin = true;
-            }
-        }
-        return (nombreTentative-tentativeActuelle);
-    }*/
 }
