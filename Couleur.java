@@ -6,7 +6,7 @@ import java.util.EnumMap;
  * @author Kozik J., Galfré K.
  */
 
-public enum Couleur{
+public enum Couleur implements java.io.Serializable{
     ROUGE, JAUNE, VERT, BLEU, CYAN, ROSE, VIOLET, BLANC;
 
     /**

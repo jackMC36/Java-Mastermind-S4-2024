@@ -4,8 +4,10 @@ import java.util.Scanner;
 /**
  * La classe Jeu représente le moteur de jeu pour le Mastermind.
  * Elle gère l'initialisation et le déroulement du jeu.
+ * 
+ * @author Kozik J., Galfré K.
  */
-public class Jeu {
+public class Jeu implements java.io.Serializable{
     /**
      * L'objet Initialisation contenant les paramètres de la partie.
      */
@@ -83,6 +85,12 @@ public class Jeu {
             for(int i = 0 ; i < init.getNbPion() ; i++){
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
                 String reponse = scanner.next();
+                if(reponse.equalsIgnoreCase("Sauvegarder")){
+                    System.out.println("Indiquer le nom que vous souhaitez donner au fichier de sauvegarde");
+                    String nomFichier = scanner.next();
+                    Mastermind.sauvegardePartie(nomFichier);
+                    System.exit(0);
+                }
                 tentative.add(new Pion(Couleur.valueOf(reponse.toUpperCase())));
             }
             plateau.ajouterTentative(tentative);
@@ -182,7 +190,7 @@ public class Jeu {
     public void multi(){
         Scanner input = new Scanner(System.in);
         for(int i = 0 ; i < (init.getNbPartie() * init.getNbJoueur()) ; i ++){
-            Tableau.clearScreen();
+            Mastermind.clearScreen();
             System.out.println("Partie " + (i+1) + "/" + (init.getNbPartie() * init.getNbJoueur()));
             System.out.println("A vous de jouer " + init.getPrenom().get(i%init.getPrenom().size()));
             plateau = new Tableau(init.getMulti(), init.getRobot(), init.getNiveau(), init.getNbTentative(), init.getNbPion(), init.getNbCouleur(), init.getDoublon());
@@ -191,7 +199,7 @@ public class Jeu {
             System.out.print("\nAppuyer sur la touche Entrée pour continuer ..."); //Cette ligne et celle d'après permettent de bloquer l'exécution du programme jusqu'à que le joueur appui sur une touche du clavier
             input.nextLine();
         }
-        Tableau.clearScreen();
+        Mastermind.clearScreen();
         System.out.println("Fin de la partie ! Félicitations à vous !\n");
         System.out.println("TABLEAU DES SCORES");
         this.affichage(init.getNbJoueur(), init.getPrenom());

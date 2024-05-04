@@ -3,8 +3,10 @@ import java.util.ArrayList;
 
 /**
  * La classe Initialisation initialise le jeu. Elle récupère, par le biai de saisie clavier par l'utilisateur, les paramètres de la partie.
+ * 
+ * @author Kozik J., Galfré K.
  */
-public class Initialisation {
+public class Initialisation implements java.io.Serializable{
     /**
      * Crée un objet de type Scanner qui permet de lire une entrée d'un utilisateur à partir de la console.
      */
@@ -66,20 +68,12 @@ public class Initialisation {
     private Boolean doublon;
 
     /**
-     * Réalise un "clear" du terminal. Efface toute les lignes de commande tapées avant.
-     */
-    public static void clearScreen(){  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }
-
-    /**
      * Constructeur de la classe Initialisation. Il initialise les paramètres du jeu en fonction des choix de l'utilisateur.
      */
     public Initialisation(){
-        Initialisation.clearScreen();
+        Mastermind.clearScreen();
 
-        System.out.println("Bienvenue dans le jeu Mastermind !");
+        System.out.println("Réglage des paramètres de jeu :\n");
 
         System.out.println("Séléctionner le mode de jeu : (Solo ou Multijoueur)");
         String mode = input.next();
@@ -87,6 +81,9 @@ public class Initialisation {
             this.multi = false;
             this.robot = true;
         }
+        else if(mode.equalsIgnoreCase("Charger")){ //Voir pour mettre un menu : "Charger partie ?" au lancement du programme (donc dans le main)
+            Mastermind.chargementPartie("save.sav");
+        } //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         else{
             this.multi = true;
             System.out.println("Nombre de joueur ?");

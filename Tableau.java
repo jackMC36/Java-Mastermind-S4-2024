@@ -4,8 +4,10 @@ import java.util.Random;
 
 /**
  * La classe Tableau crée un plateau de jeu et le gère. Elle s'occupe de le remplir, de l'afficher, etc.
+ * 
+ * @author Kozik J., Galfré K.
  */
-public class Tableau{
+public class Tableau implements java.io.Serializable{
     /**
      * Crée un objet de type Scanner qui permet de lire une entrée d'un utilisateur à partir de la console.
      */
@@ -50,14 +52,6 @@ public class Tableau{
      * Le nombre de pions.
      */
     private int nombrePion;
-
-    /**
-     * Réalise un "clear" du terminal. Efface toute les lignes de commande tapées avant.
-     */
-    public static void clearScreen(){  
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();  
-    }
 
     /**
      * Constructeur de la classe Tableau.
@@ -191,7 +185,7 @@ public class Tableau{
                 this.ligneDeviner.add(new Pion(Couleur.valueOf(couleur.toUpperCase())));
             }
         }
-        Tableau.clearScreen();
+        Mastermind.clearScreen();
     }
 
     /**
@@ -277,9 +271,6 @@ public class Tableau{
         }
         controlF.add(controlTmp);
     }
-
-    /* Cette deuxième fonction fait le controle en difficile, elle n'indique que le nombre
-    de pion par catégorie (BC/BP & BC/MP) */
 
     /**
      * Contrôle, si le niveau a été défini sur Difficile, la dernière tentative.

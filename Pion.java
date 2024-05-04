@@ -5,7 +5,7 @@
  * @author Kozik J., Galfré K.
  */
 
-public class Pion{
+public class Pion implements java.io.Serializable{
     /**
      * La couleur du pion.
      */
