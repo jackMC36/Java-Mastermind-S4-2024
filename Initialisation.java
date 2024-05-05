@@ -6,6 +6,12 @@ import java.util.ArrayList;
  * 
  * @author Kozik J., Galfré K.
  */
+/**
+ * La classe Initialisation est utilisée pour initialiser les paramètres du jeu Mastermind en fonction des choix de l'utilisateur.
+ * Elle permet de définir le mode de jeu (solo ou multijoueur), le nombre de joueurs, les prénoms des joueurs, les scores, le nombre de parties par joueur,
+ * le choix de la ligne à deviner (manuelle ou automatique), le niveau de jeu, le nombre de tentatives autorisées, le nombre de pions, le nombre de couleurs possibles,
+ * et si les doublons de couleurs sont autorisés.
+ */
 public class Initialisation implements java.io.Serializable{
     /**
      * Crée un objet de type Scanner qui permet de lire une entrée d'un utilisateur à partir de la console.

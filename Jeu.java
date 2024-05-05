@@ -86,9 +86,10 @@ public class Jeu implements java.io.Serializable{
                 System.out.println("Entrez la couleur du pion " + (i+1) + " : ");
                 String reponse = scanner.next();
                 if(reponse.equalsIgnoreCase("Sauvegarder")){
+
                     System.out.println("Indiquer le nom que vous souhaitez donner au fichier de sauvegarde");
                     String nomFichier = scanner.next();
-                    Mastermind.sauvegardePartie(nomFichier);
+                    //Mastermind.sauvegardePartie(nomFichier);
                     System.exit(0);
                 }
                 tentative.add(new Pion(Couleur.valueOf(reponse.toUpperCase())));

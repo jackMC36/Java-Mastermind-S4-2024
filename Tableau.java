@@ -7,6 +7,14 @@ import java.util.Random;
  * 
  * @author Kozik J., Galfré K.
  */
+/**
+ * La classe Tableau représente un tableau de jeu pour le jeu du Mastermind.
+ * Elle stocke les informations relatives aux tentatives, aux résultats et aux paramètres de la partie.
+ */
+/**
+ * La classe Tableau représente le tableau de jeu du Mastermind.
+ * Elle stocke les informations relatives à la ligne à deviner, les tentatives de jeu, les résultats des essais, le niveau de difficulté, le nombre de tentatives autorisées, le numéro de la tentative actuelle et le nombre de pions.
+ */
 public class Tableau implements java.io.Serializable{
     /**
      * Crée un objet de type Scanner qui permet de lire une entrée d'un utilisateur à partir de la console.
@@ -53,6 +61,144 @@ public class Tableau implements java.io.Serializable{
      */
     private int nombrePion;
 
+    public ArrayList<Pion> getLigneDeviner(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>ligneDeviner</em>.
+         * @return la ligne de pion à deviner.
+         */
+        return this.ligneDeviner;
+    }
+
+    public ArrayList<ArrayList<Pion>> getTableauTentative(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>tableauTentative</em>.
+         * @return la liste de liste stockant toutes les tentatives déjà réalisées.
+         */
+        return this.tableauTentative;
+    }
+
+    public ArrayList<ArrayList<String>> getControlF(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>controlF</em>.
+         * @return la liste de liste stockant les résultats des essais avec le niveau réglé sur facile.
+         */
+        return this.controlF;
+    }
+
+    public ArrayList<ArrayList<Integer>> getControlD(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>controlD</em>.
+         * @return la liste de liste stockant les résultats des essais avec le niveau réglé sur difficile.
+         */
+        return this.controlD;
+    }
+
+    public String getNiveau(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>niveau</em>.
+         * @return le niveau de la partie.
+         */
+        return this.niveau;
+    }
+
+    public int getNombreTentative(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>nombreTentative</em>.
+         * @return le nombre de tentatives autorisées.
+         */
+        return this.nombreTentative;
+    }
+
+    public int getTentativeActuelle(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>tentativeActuelle</em>.
+         * @return le numéro de la tentative actuelle.
+         */
+        return this.tentativeActuelle;
+    }
+
+    public int getNombrePion(){
+        /**
+         * Getteur renvoyant la valeur de l'attribut privé <em>nombrePion</em>.
+         * @return le nombre de pions.
+         */
+        return this.nombrePion;
+    }
+
+    public void setLigneADeviner(ArrayList<Pion> ligneDeviner){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>ligneDeviner</em>.
+         * @param ligneDeviner la nouvelle ligne de pion à deviner.
+         */
+        this.ligneDeviner = ligneDeviner;
+    }
+
+    public void setTableauTentative(ArrayList<ArrayList<Pion>> tableauTentative){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>tableauTentative</em>.
+         * @param tableauTentative la nouvelle liste de liste stockant toutes les tentatives déjà réalisées.
+         */
+        this.tableauTentative = tableauTentative;
+    }
+
+    public void setControlF(ArrayList<ArrayList<String>> controlF){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>controlF</em>.
+         * @param controlF la nouvelle liste de liste stockant les résultats des essais avec le niveau réglé sur facile.
+         */
+        this.controlF = controlF;
+    }
+
+    public void setControlD(ArrayList<ArrayList<Integer>> controlD){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>controlD</em>.
+         * @param controlD la nouvelle liste de liste stockant les résultats des essais avec le niveau réglé sur difficile.
+         */
+        this.controlD = controlD;
+    }
+
+    public void setNiveau(String niveau){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>niveau</em>.
+         * @param niveau le nouveau niveau de la partie.
+         */
+        this.niveau = niveau;
+    }
+
+    public void setNombreTentative(int nombreTentative){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>nombreTentative</em>.
+         * @param nombreTentative le nouveau nombre de tentatives autorisées.
+         */
+        this.nombreTentative = nombreTentative;
+    }
+
+    public void setTentativeActuelle(int tentativeActuelle){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>tentativeActuelle</em>.
+         * @param tentativeActuelle le nouveau numéro de la tentative actuelle.
+         */
+        this.tentativeActuelle = tentativeActuelle;
+    }
+
+    public void setNombrePion(int nombrePion){
+        /**
+         * Setteur permettant de modifier la valeur de l'attribut privé <em>nombrePion</em>.
+         * @param nombrePion le nouveau nombre de pions.
+         */
+        this.nombrePion = nombrePion;
+    }
+   
+    
+
+
+    /**
+     * Constructeur de la classe Tableau.
+     */
+    public Tableau(){
+        // Constructeur vide
+    }
+    
     /**
      * Constructeur de la classe Tableau.
      * 
@@ -196,13 +342,7 @@ public class Tableau implements java.io.Serializable{
         return this.tableauTentative;
     }
 
-    /**
-     * Getteur renvoyant la valeur de l'attribut privé <em>tentativeActuelle</em>.
-     * @return le numéro de la tentative actuelle.
-     */
-    public int getTentativeActuelle(){
-        return this.tentativeActuelle;
-    }
+
 
     /**
      * Rempli le tableau de tentatives. Ajoute la dernière tentative au tableau de tentatives et incrémente le compteur de tentative déjà réalisée <em>tentativeActuelle</em>.
