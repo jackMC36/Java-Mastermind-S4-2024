@@ -1,0 +1,58 @@
+\documentclass[french]{article}
+\usepackage{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+
+\title{Rapport sur l'implémentation d'un jeu de Mastermind en language Java}
+\author{Killian GALFRE - - VEYRET et Jacques KOZIK}
+\date{Du 26 mars au 05 mai 2024}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\begin{abstract}
+Ce projet réalisé au cours des dernières semaines a consisté en l'implémentation d'un jeu de Mastermind en language Java. Le but du jeu
+est de deviner une combinaison de pions de couleur choisie par l’adversaire en un
+minimum de tentative.
+\end{abstract}
+
+
+\section{Introduction : Description général du projet}
+Ce jeu a été réalisé en language Java. Il fait également appel à d'autres logiciels tel que Gitlab et son espace de travail partagé, ou encore le logiciel \LaTeX \space qui nous permet de rédiger ce rapport. Ce projet comporte plusieurs documents :
+\begin{enumerate}
+\item Le \textbf{code source} du jeu réparti sur plusieurs fichiers .class
+\item Un \textbf{rapport} sur le projet \textit{GALFREVEYRET\_KOZIK.pdf} fait à partir de \LaTeX
+\end{enumerate}
+
+
+\section{Struture et choix architecturaux}
+Le code de notre jeu est découpé en 6 classes :
+\begin{enumerate}
+\item \textbf{Pion.java} Cette classe gère la création et l'affichage des pions.
+\item \textbf{Couleur.java} Cette enumeration gère les différentes possibilités de couleur que peuvent prendre un pion.
+\item \textbf{Tableau.java} Cette classe gère la création, l'affichage et toute les fonctions annexes (remplissage, vérification des tentatives etc.) du plateau de jeu.
+\item \textbf{Initialisation.java} Cette classe gère le paramétrage de la partie.
+\item \textbf{Jeu.java} Cette classe gère tout le déroulement de la partie que ce soir en mode multijoueur ou Solo.
+\item \textbf{Mastermind.java} Finalement, cette classe est le moteur du programme, elle lance son éxécution. Elle ne contient que le main et les fonctions de sauvegarde / chargement.
+\end{enumerate} 
+Nous reviendrons plus en détail sur ces classes juste après. Chacune est composée d'un ensemble d'élément (attributs, constructeur, guetteurs, autres méthodes).
+
+\subsection{Classe Mastermind.java}
+Cette classe sert de point d'entrée pour notre jeu de Mastermind. Elle lance l'éxécution du programme et propose des fonctionnalités pour démarrer une nouvelle partie ou charger une partie sauvegardée. Lorsque le programme démarre, il accueille l'utilisateur et lui donne la possibilité de charger une partie existante ou de commencer une nouvelle partie. La classe permet également à l'utilisateur de sauvegarder (grâce à la sérialisabilitée) sa progression à tout moment pendant le jeu. Elle propose également une fonction pour effacer le contenu de l'écran du terminal (qui est utilisé dans plusieurs autres classes), et qui permet d'offrir une meilleure expérience utilisateur.
+
+\subsection{Classe Jeu.java}
+Cette classe est le moteur central du jeu Mastermind. Elle contrôle l'initialisation et le déroulement du jeu, ainsi que les différentes actions associées à celui-ci. Une fois instanciée, elle lance le jeu en initialisant les paramètres de la partie. Cette classe offre des fonctionnalités essentielles telles que la gestion des parties en mode solo, c'est-à-dire la saisie des tentatives par l'utilisateur, leur vérification et l'affichage du plateau de jeu. Mais elle gère également le mode multijoueur, permettant à plusieurs joueurs de jouer tour à tour, de lancer plusieurs parties et d'afficher les scores à la fin.
+
+\subsection{Classe Initialisation.java}
+La classe "Initialisation" gère la configuration initiale du jeu Mastermind. Elle permet à l'utilisateur de définir les paramètres de la partie via des saisies clavier. Bien que cette partie aurait pu directement être intégrée à la classe Jeu.java, nous avons décidé de la mettre dans une classe à part pour séparer l'initialisation du jeu, du déroulement de la partie et ainsi alléger la classe Jeu.
+
+\subsection{Classe Tableau.java}
+
+\subsection{Classe Pion.java}
+La classe "Pion" représente un des éléments principaux du jeu, c'est-à-dire les pions de couleur utilisés pour former les combinaisons. Chaque pion est associé à une couleur définie par l'énumérateur "Couleur". Cette classe permet de créer des instances de pions avec une couleur spécifiée, d'obtenir la couleur d'un pion, de le représenter sous forme de chaîne de caractères et de comparer si deux pions ont la même couleur.
+
+\subsection{L'énumérateur Couleur.java}
+L'utilisation d'un énumérateur permet de définir une liste précise des couleurs possibles pour les différents pion du jeu. Nous avons décidé d'utiliser cette méthode pour restreindre les couleurs possibles et ainsi limiter les possibles problèmes de couleurs se ressemblant mais aussi pour permettre l'affichage des couleurs dans le terminal grâce à un EnumMap. En effet, cet énumérateur fait appel à un EnumMap qui associe chaque couleur à une représentation sous forme de chaîne de caractères. Cette représentation permet d'afficher visuellement chaque couleur dans la console en utilisant des codes de couleur ANSI.
+\end{document}
